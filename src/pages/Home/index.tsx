@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useEffect, useState } from "react"
 import { useNavigate } from "react-router-dom"
 import "./style.css"
 
@@ -8,9 +8,14 @@ type TBoardSize = {
 }
 
 export default function Home() {
-	const [boardSize, setBoardSize] = useState<TBoardSize>({ x: 0, y: 0 })
+	const [boardSize, setBoardSize] = useState<TBoardSize>({ x: 2, y: 2 })
 
 	const navigate = useNavigate()
+
+	useEffect(() => {
+		let element = document.querySelector("#boardSizeX") as HTMLElement
+		element.focus()
+	}, [])
 
 	function handleCreateBoard(e: React.FormEvent) {
 		e.preventDefault()
@@ -30,6 +35,7 @@ export default function Home() {
 				<div>
 					<input
 						type="number"
+						min={2}
 						name="boardSizeX"
 						id="boardSizeX"
 						value={boardSize.x}
@@ -40,6 +46,7 @@ export default function Home() {
 					<p>X</p>
 					<input
 						type="number"
+						min={2}
 						name="boardSizeY"
 						id="boardSizeY"
 						value={boardSize.y}
