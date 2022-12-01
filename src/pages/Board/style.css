@@ -58,15 +58,14 @@
 
 .grid .row .col p {
 	pointer-events: none;
-    font-size: 2em;
+	font-size: 2em;
 }
 
 .grid .row .col.hide .card {
 	transform: rotateX(180deg);
 }
 
-/* 
-.grid .row .col:hover {
-	background: #e7e7e7;
+.grid .row .col:hover .card:after {
+	background: #fff;
 	border: 1px solid #65e43f;
-} */
+}
