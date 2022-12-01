@@ -17,9 +17,11 @@ export default function Home() {
 		console.log(boardSize)
 		if ((boardSize.x * boardSize.y) % 2 != 0) {
 			return alert("Crie um tabuleiro com número par de casas")
+		} else if (boardSize.x < 2 || boardSize.y < 2) {
+			return alert("Crie um tabuleiro com no mínimo 2x2 casas")
 		}
-        
-		navigate("/board", { state: boardSize })
+
+		navigate("/board/" + boardSize.x + "x" + boardSize.y)
 	}
 	return (
 		<div className="App">

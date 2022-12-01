@@ -1,0 +1,72 @@
+.grid {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	gap: 1em;
+}
+
+.grid .row {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: center;
+	gap: 1em;
+}
+
+.grid .row .col {
+	cursor: pointer;
+}
+
+.grid .row .col .card {
+	position: relative;
+	width: 5em;
+	height: 5em;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	border: 1px solid transparent;
+	border-radius: 5px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background: #f7f7f7;
+	border: 1px solid #e7e7e7;
+	border-radius: 5px;
+	color: #232323;
+	font-weight: bold;
+	transition: all 0.6s ease-out;
+	backface-visibility: hidden;
+	transform-style: preserve-3d;
+	pointer-events: none;
+}
+
+.grid .row .col .card:after {
+	content: "";
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: linear-gradient(#e7e7e7, #d9d9d9);
+	border-radius: 5px;
+	transform: rotateX(180deg);
+	transform-style: preserve-3d;
+	backface-visibility: hidden;
+	cursor: pointer;
+}
+
+.grid .row .col p {
+	pointer-events: none;
+    font-size: 2em;
+}
+
+.grid .row .col.hide .card {
+	transform: rotateX(180deg);
+}
+
+/* 
+.grid .row .col:hover {
+	background: #e7e7e7;
+	border: 1px solid #65e43f;
+} */

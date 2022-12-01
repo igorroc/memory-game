@@ -9,7 +9,7 @@ export default function AppRoutes() {
 		<BrowserRouter>
 			<Routes>
 				<Route path="/" element={<Home />} />
-				<Route path="/board" element={<Board />} />
+				<Route path="/board/:size" element={<Board />} />
 			</Routes>
 		</BrowserRouter>
 	)
