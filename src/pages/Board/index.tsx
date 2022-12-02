@@ -9,6 +9,12 @@ type TBoardSize = {
 }
 
 export default function Board() {
+	let [emojis, setEmojis] = useState([""])
+
+	useEffect(() => {
+		setEmojis(randomizeEmojis())
+	}, [])
+
 	const navigate = useNavigate()
 	let { size } = useParams()
 
@@ -20,6 +26,14 @@ export default function Board() {
 	})
 
 	const [previousClick, setPreviousClick] = useState<HTMLElement | null>()
+
+	const [start, setStart] = useState(false)
+
+	useEffect(() => {
+		setTimeout(() => {
+			setStart(true)
+		}, 1000)
+	}, [])
 
 	useEffect(() => {
 		if (!size) {
@@ -123,7 +137,7 @@ export default function Board() {
 					<div className="row" key={iRow}>
 						{row.map((col, iCol) => (
 							<div
-								className="col hide"
+								className={start ? "col hide" : "col"}
 								key={iCol}
 								data-row={iRow}
 								data-col={iCol}
@@ -134,7 +148,7 @@ export default function Board() {
 								}
 							>
 								<div className="card">
-									<p>{col}</p>
+									<p>{emojis[col]}</p>
 								</div>
 							</div>
 						))}
@@ -144,4 +158,22 @@ export default function Board() {
 			</div>
 		</div>
 	)
+}
+
+function randomizeEmojis() {
+	// prettier-ignore
+	const emojis = ["🐱","🐶","🐭","🐹","🐰","🦊","🐻","🐼","🐨","🐯","🦁","🐮","🐷","🐸","🐵","🙈","🙉","🙊","🐔","🐧","🐦","🐤","🐣","🐥","🐺","🐗","🐴","🦄","🐝","🐛","🦋","🐌","🐞","🐜","🕷","🕸","🐢","🐍","🦎","🦂","🦀","🦑","🐙","🦐","🐠","🐟","🐡","🐬","🦈","🐳","🐋","🐊","🐆","🐅","🐃","🐂","🐄","🐪","🐫","🐘","🦏","🦍","🐎","🐖","🐐","🐏","🐑","🐕","🐩","🐈","🐓","🦃","🕊","🐇","🐁","🐀","🐿","🐾","🐉","🐲"]
+
+	// randomize emojis
+	let newEmojis = [...emojis]
+	for (let index = 0; index < emojis.length; index++) {
+		let randomX1 = Math.floor(Math.random() * (emojis.length - 1))
+		let randomX2 = Math.floor(Math.random() * (emojis.length - 1))
+
+		let aux = newEmojis[randomX1]
+		newEmojis[randomX1] = newEmojis[randomX2]
+		newEmojis[randomX2] = aux
+	}
+
+	return newEmojis
 }
