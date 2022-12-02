@@ -24,6 +24,8 @@ export default function Home() {
 			return alert("Crie um tabuleiro com número par de casas")
 		} else if (boardSize.x < 2 || boardSize.y < 2) {
 			return alert("Crie um tabuleiro com no mínimo 2x2 casas")
+		} else if ((boardSize.x * boardSize.y) / 2 > 80) {
+			return alert("Crie um tabuleiro com no máximo 160 casas")
 		}
 
 		navigate("/board/" + boardSize.x + "x" + boardSize.y)

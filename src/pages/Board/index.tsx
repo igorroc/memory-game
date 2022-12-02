@@ -30,6 +30,9 @@ export default function Board() {
 		if ((x * y) % 2 !== 0 || x < 2 || y < 2) {
 			return navigate("/")
 		}
+		if ((x * y) / 2 > 80) {
+			return navigate("/")
+		}
 
 		setBoardSize({
 			x,
